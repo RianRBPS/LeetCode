@@ -8,51 +8,31 @@
 int* getAverages(int* nums, int numsSize, int k, int* returnSize){
 
     // Alocando a memoria p/ o array de retorno 
-    int *retarr = malloc(numsSize * sizeof(int));
+    // Pq colocar o (int*) antes do malloc?
+    int *retarr = (int*)malloc(numsSize * sizeof(int));
 
     // Preenchendo todas as posições do array com o valor -1
     for(int i=0; i<numsSize; i++){
         retarr[i] = -1;
     }
 
-    
-    int t, sum = 0;
+    // Pq long e não int?
+    long sum = 0;
+
+    // Diametro gerado pelo raio k com centro no ponto i
+    int lenght = 2 * k + 1;
 
     // Percorrendo o array numSize para encontrar as posições que atendam aos requisitos do enunciado
     for(int i=0; i<numsSize; i++){
-        if(i-k >= 0 && i+k < numsSize){
-            t = i - k;
-            for(t; t<=i+k; t++){
-                sum += nums[t];
-            }
-            retarr[i] = sum / (2*k + 1);
-            sum = 0;
+        sum += nums[i];
+        if(i+1>=lenght){
+            retarr[i-k] = sum / lenght;
+            sum -= nums[i + 1 - lenght];
         }
+
     }
 
+    // Declarando o tamanho do array de retorno
     *returnSize = numsSize;
     return retarr;
-}
-
-int main() {
-    int tam;
-    scanf("%d", &tam);
-
-    int num[tam];
-    for(int i=0; i<tam; i++){
-        scanf("%d", &num[i]);
-    }
-
-    int k;
-    scanf("%d", &k);
-
-    int * numA;
-    int tam2;
-    numA = getAverages(num, tam, k, &tam2);
-
-    for(int i=0; i<tam; i++){
-        printf("%d", numA[i]);
-    }
-    
-
 }
