@@ -1,4 +1,5 @@
 int romanToInt(char * s){
+    
     // Tomar cuidado para que o array não esteja em uma posição negativa
     int num = 0;
     int i = 0;
