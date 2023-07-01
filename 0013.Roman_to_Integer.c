@@ -1,83 +1,123 @@
-#include <stdio.h>
-
 int romanToInt(char * s){
-
+    // Tomar cuidado para que o array não esteja em uma posição negativa
     int num = 0;
     int i = 0;
 
-    while(s[i] != '\0');{
+    while(s[i] != '\0'){
+
         switch (s[i]){
+            
             case 'M':
-                if(s[i-1] == 'C'){
-                    num += 900;
+                if(i>0){
+                    if(s[i-1] == 'C'){
+                        num += 900;
+                        break;
+                    }else{
+                        num += 1000;
+                        break;
+                    }
                 }else{
                     num += 1000;
+                    break;
                 }
 
+
             case 'D':
-                if(s[i-1] == 'C'){
-                    num += 400;
+                if(i>0){
+                    if(s[i-1] == 'C'){
+                        num += 400;
+                        break;
+                    }else{
+                        num += 500;
+                        break;
+                    }
                 }else{
                     num += 500;
-                }
- 
-            case 'C':
-                if(s[i+1] == 'M' || s[i+1] == 'D'){
                     break;
-                }else{
+                }
+            
+
+            case 'C':
+                if(i>0){
                     if(s[i-1] == 'X'){
-                        num+=90;
+                        num += 90;
+                        break;
+                    }else if(s[i+1] == 'M' || s[i+1] == 'D'){
+                        break;
                     }else{
-                        num+= 100;
+                        num += 100;
+                        break;
+                    }
+                }else{
+                    if(s[i+1] == 'M' || s[i+1] == 'D'){
+                        break;
+                    }else{
+                        num += 100;
+                        break;
+                    }
+                }
+
+
+            case 'L':
+                if(i>0){
+                    if(s[i-1] == 'X'){
+                        num += 40;
+                        break;
+                    }else{
+                        num += 50;
+                        break;
+                    }
+                }else{
+                    num += 50;
+                    break;
+                }
+            
+            case 'X':
+                if(i>0){
+                    if(s[i-1] == 'I'){
+                        num += 9;
+                        break;
+                    }else if(s[i+1] == 'L' || s[i+1] == 'C'){
+                        break;
+                    }else{
+                        num += 10;
+                        break;
+                    }
+                }else{
+                    if(s[i+1] == 'L' || s[i+1] == 'C'){
+                        break;
+                    }else{
+                        num += 10;
+                        break;
                     }
                 }
             
-            case 'L':
-                if(s[i-1] == 'X'){
-                    num += 40;
-                }else{
-                    num += 50;
-                }
-
-            case 'X':
-                if(s[i+1] == 'L' || s[i+1] == 'C'){
-                    break;
-                }else{
-                    if(s[i-1] == 'I'){
-                        num += 9;
-                    }else{
-                        num += 10;
-                    }
-                }
-
-
             case 'V':
-                if(s[i-1] == 'I'){
-                    num += 4;
+                if(i>0){
+                    if(s[i-1] == 'I'){
+                        num += 4;
+                        break;
+                    }else{
+                        num += 5;
+                        break;
+                    }
                 }else{
                     num += 5;
+                    break;
                 }
-
 
             case 'I':
-                if(s[i+1] == 'V' || s[i+1] == 'X'){
+                if(s[i+1] == 'X' || s[i+1] == 'V'){
                     break;
                 }else{
-                    num += 1;
+                    num++;
+                    break;
                 }
-        }
+
+        }// Fim do switch case
+
         i++;
-    }
+    }// Fim do while loop
+
     return num;
-}
-
-int main(){
-
-    char s[3] = "XVI";
-
-    int x = romanToInt(s);
-
-    printf("%d", x);
-
-    return 0;
-}
+}// Fim da função
