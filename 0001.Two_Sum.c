@@ -1,8 +1,7 @@
-// Link do Problema
-// https://leetcode.com/problems/two-sum/
-
 #include <stdio.h>
 #include <stdlib.h>
+
+// Solução 1
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
@@ -43,3 +42,34 @@ To assign the array’s size, do this:
 
 *returnSize = n;   // if the array's size is n.
 */
+
+
+// Solução 2
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+
+    int* retarr = (int*)malloc(2*(sizeof(int)));
+    *returnSize =2;
+
+    int i = 0, j = 1;
+    while(i<numsSize){
+
+        if(j == numsSize){
+            i++;
+            j = i + 1;
+        }
+
+        if(nums[i] + nums[j] == target){
+            break;
+        }else{
+            j++;
+        }
+    }
+
+    retarr[0] = i;
+    retarr[1] = j;
+
+    return retarr;
+}
