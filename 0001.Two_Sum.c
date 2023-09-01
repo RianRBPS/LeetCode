@@ -7,7 +7,7 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 
-int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+int* twoSum1(int* nums, int numsSize, int target, int* returnSize){
     
     // Alocando a memória necessária
     int *arrayRetorno = malloc(2 * sizeof(int));
@@ -48,7 +48,7 @@ To assign the array’s size, do this:
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+int* twoSum2(int* nums, int numsSize, int target, int* returnSize){
 
     int* retarr = (int*)malloc(2*(sizeof(int)));
     *returnSize =2;
