@@ -19,7 +19,7 @@ struct ListNodes {
 bool hasCycle(struct ListNode *head) {
     
     // Não existe ciclo se a lista estiver vazia ou se ela tiver apenas um único node
-    if(head == NULL || head->next == NULL){
+    if(head == NULL /*|| head->next == NULL*/){
         return false;
     }
     
